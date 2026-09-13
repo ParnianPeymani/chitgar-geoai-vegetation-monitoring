@@ -1145,7 +1145,27 @@ function handleOverview(t){
 }
 
 const INTENTS = [
-  { kws:['hottest','hot','highest temperature','گرم','داغ','بیشترین دما','vs.لاترین دما'], handler: ()=>{
+  { kws:['hottest','hot','highest temperature','hottest area','where is the hottest','گرم','داغ','بیشترین دما','بالاترین دما'], handler: ()=>{
+    const hottest = REGIONAL_STATS.extremes.highest_lst;
+
+    return `🌡️ <b>Hottest Area</b><br>
+    The highest LST recorded in the park is <b>${hottest.value}°C</b>, located in the <b>${hottest.region}</b> area.
+
+    <div class="stat-line">
+      <span>Maximum LST</span>
+      <b>${hottest.value}°C</b>
+    </div>
+
+    <div class="stat-line">
+      <span>Region</span>
+      <b>${hottest.region}</b>
+    </div>
+
+    <div class="foot">
+      This represents the highest recorded LST value in the analyzed grid,
+      not the hottest persistent stress cluster.
+    </div>`;
+  }},
       const hottest = [...FIELD_VISITS].sort((a,b)=>b.lst_mean-a.lst_mean)[0];
       return `The hottest identified cluster has a temperature of <b>${hottest.lst_mean}°C</b> at coordinates <b>${hottest.lat}, ${hottest.lng}</b> (area ${hottest.area_ha} ha, NDVI ${hottest.ndvi_mean}).
       <div class="foot">The park-wide mean temperature is ${SUMMARY.LST_mean_overall_C}°C, with a 10-year increase of +${SUMMARY.LST_total_change_10yr_C}°C.</div>`;
