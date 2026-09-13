@@ -887,7 +887,9 @@ const PROJECT_KNOWLEDGE = {
 
 function projectKnowledgeAnswer(t){
   const hasAny = (...terms) => terms.some(x => t.includes(x));
-
+if (hasAny("project goal", "project purpose", "project objective", "exact goal of the project")) {
+  return `The main goal of the Chitgar GeoAI project is to monitor and analyze urban vegetation conditions in Chitgar using satellite imagery, remote sensing indices, anomaly detection, and spatial analysis.`;
+}
   function projectKnowledgeAnswer(t){
   const hasAny = (...terms) => terms.some(x => t.includes(x.toLowerCase()));
   // ... بقیه دقیقاً همون قبلی بمونه
