@@ -888,9 +888,10 @@ const PROJECT_KNOWLEDGE = {
 function projectKnowledgeAnswer(t){
   const hasAny = (...terms) => terms.some(x => t.includes(x));
 
-  if (
-    hasAny('Project Goal','هدف دقیق پروژه','هدف این پروژه','این پروژه چیه','پروژه چیکار می‌کنه',
-           'پروژه چیکار میکنه','کار پروژه','برای چی ساخته شده','چرا ساخته شده','هدفش چیه')
+  function projectKnowledgeAnswer(t){
+  const hasAny = (...terms) => terms.some(x => t.includes(x.toLowerCase()));
+  // ... بقیه دقیقاً همون قبلی بمونه
+
   ) {
     return `🎯 <b>Project Goal</b><br>${PROJECT_KNOWLEDGE.goal}
       <div class="foot">This assistant can answer both numerical questions and conceptual questions about the project.</div>`;
