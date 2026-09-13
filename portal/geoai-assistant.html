@@ -670,6 +670,7 @@ header p{
   width:46px;
   height:46px;
 }
+}
 </style>
 </head>
 <body>
@@ -1304,12 +1305,39 @@ function removeTyping(){
 
 function sendMessage(text){
   if(!text.trim()) return;
+
   addMessage('user', text);
   inputEl.value = '';
   showTyping();
+
   setTimeout(()=>{
     removeTyping();
-    addMessage('bot', answerQuestion(text));
+
+    try {
+      const answer = answerQuestion(text);
+
+      if(answer){
+        addMessage('bot', answer);
+      } else {
+        addMessage(
+          'bot',
+          'I could not find an answer for that question.'
+        );
+      }
+
+    } catch(error) {
+      console.error('GeoAI Error:', error);
+
+      addMessage(
+        'bot',
+        `⚠️ <b>Assistant Error</b><br>
+        Something went wrong while processing this question.
+        <div class="foot">
+          ${error.message}
+        </div>`
+      );
+    }
+
   }, 500);
 }
 
