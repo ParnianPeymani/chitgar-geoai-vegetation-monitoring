@@ -886,71 +886,185 @@ const PROJECT_KNOWLEDGE = {
 };
 
 function projectKnowledgeAnswer(t){
-  const hasAny = (...terms) => terms.some(x => t.includes(x));
-if (hasAny("project goal", "project purpose", "project objective", "exact goal of the project")) {
-  return `The main goal of the Chitgar GeoAI project is to monitor and analyze urban vegetation conditions in Chitgar using satellite imagery, remote sensing indices, anomaly detection, and spatial analysis.`;
-}
-  function projectKnowledgeAnswer(t){
-  const hasAny = (...terms) => terms.some(x => t.includes(x.toLowerCase()));
-  // ... بقیه دقیقاً همون قبلی بمونه
+  const hasAny = (...terms) =>
+    terms.some(x => t.includes(x.toLowerCase()));
 
+  if (
+    hasAny(
+      'project goal',
+      'project purpose',
+      'project objective',
+      'exact goal of the project',
+      'goal of the project',
+      'purpose of the project',
+      'objective of the project'
+    )
   ) {
-    return `🎯 <b>Project Goal</b><br>${PROJECT_KNOWLEDGE.goal}
-      <div class="foot">This assistant can answer both numerical questions and conceptual questions about the project.</div>`;
+    return `🎯 <b>Project Goal</b><br>
+    ${PROJECT_KNOWLEDGE.goal}
+    <div class="foot">
+      This assistant can answer both numerical questions and conceptual questions about the project.
+    </div>`;
   }
 
   if (
-    hasAny('Stress Candidate','نامزد تنش','کاندیدای تنش','stress candidate','stress-candidate',
-           'استرس کاندید','تنش کاندید','تنش نامزد')
+    hasAny(
+      'stress candidate',
+      'stress-candidate',
+      'stress candidate?',
+      'what is a stress candidate',
+      'نامزد تنش',
+      'کاندیدای تنش',
+      'استرس کاندید',
+      'تنش کاندید',
+      'تنش نامزد'
+    )
   ) {
-    return `⚠️ <b>What is a stress candidate?</b><br>${PROJECT_KNOWLEDGE.stress}
-      <div class="stat-line"><span>NDVI Trend</span><b>Declining</b></div>
-      <div class="stat-line"><span>NDVI</span><b>Below park median</b></div>
-      <div class="stat-line"><span>LST</span><b>Above park median</b></div>
-      <div class="foot">A “stress candidate” is not a confirmed stress diagnosis or disease detection; it is an area prioritized for further investigation.</div>`;
+    return `⚠️ <b>What is a stress candidate?</b><br>
+    ${PROJECT_KNOWLEDGE.stress}
+    
+    <div class="stat-line">
+      <span>NDVI Trend</span><b>Declining</b>
+    </div>
+    
+    <div class="stat-line">
+      <span>NDVI</span><b>Below park median</b>
+    </div>
+    
+    <div class="stat-line">
+      <span>LST</span><b>Above park median</b>
+    </div>
+    
+    <div class="foot">
+      A “stress candidate” is not a confirmed stress diagnosis or disease detection;
+      it is an area prioritized for further investigation.
+    </div>`;
   }
 
   if (
-    hasAny('Project Data','Project data','داده‌های پروژه','داده های پروژه','چه داده‌هایی','چه داده هایی','چه شاخص‌هایی',
-           'چه شاخص هایی','شاخص‌های پروژه','شاخص های پروژه','داده چی داری','چه اطلاعاتی')
+    hasAny(
+      'project data',
+      'project outputs',
+      'project layers',
+      'what data does the project use',
+      'what data does this project have',
+      'what are the project data',
+      'داده‌های پروژه',
+      'داده های پروژه',
+      'چه داده‌هایی',
+      'چه داده هایی',
+      'چه شاخص‌هایی',
+      'چه شاخص هایی',
+      'شاخص‌های پروژه',
+      'شاخص های پروژه',
+      'داده چی داری',
+      'چه اطلاعاتی'
+    )
   ) {
-    return `🛰️ <b>Project Data & Outputs</b><br>${PROJECT_KNOWLEDGE.data}
-      <div class="stat-line"><span>NDVI</span><b>Vegetation</b></div>
-      <div class="stat-line"><span>LST</span><b>Surface Temperature</b></div>
-      <div class="stat-line"><span>Isolation Forest</span><b>Statistical Anomaly</b></div>
-      <div class="stat-line"><span>Stress Candidate</span><b>Stress Candidate</b></div>`;
+    return `🛰️ <b>Project Data & Outputs</b><br>
+    ${PROJECT_KNOWLEDGE.data}
+    
+    <div class="stat-line">
+      <span>NDVI</span><b>Vegetation</b>
+    </div>
+    
+    <div class="stat-line">
+      <span>LST</span><b>Surface Temperature</b>
+    </div>
+    
+    <div class="stat-line">
+      <span>Isolation Forest</span><b>Statistical Anomaly</b>
+    </div>
+    
+    <div class="stat-line">
+      <span>Stress Candidate</span><b>Stress Candidate</b>
+    </div>`;
   }
 
   if (
-    hasAny('Statistical Anomaly','anomaly','Isolation Forest','کاندیدای ناهنجاری','ناهنجاری چیه','Statistical Anomaly چیه','isolation forest چیه',
-           'isolation forest چیست','مدل ناهنجاری')
+    hasAny(
+      'statistical anomaly',
+      'anomaly',
+      'isolation forest',
+      'anomaly model',
+      'what is isolation forest',
+      'what is a statistical anomaly',
+      'کاندیدای ناهنجاری',
+      'ناهنجاری چیه',
+      'مدل ناهنجاری',
+      'isolation forest چیه',
+      'isolation forest چیست'
+    )
   ) {
-    return `📊 <b>Statistical Anomaly</b><br>${PROJECT_KNOWLEDGE.anomaly}
-      <div class="foot">Important: Statistical Anomaly and Stress Candidate are two different project outputs and should not be treated as the same thing.</div>`;
+    return `📊 <b>Statistical Anomaly</b><br>
+    ${PROJECT_KNOWLEDGE.anomaly}
+    
+    <div class="foot">
+      Important: Statistical Anomaly and Stress Candidate are two different
+      project outputs and should not be treated as the same thing.
+    </div>`;
   }
 
   if (
-    hasAny('analysis period','time period','time range','years','vs.زه زمانی','vs.زه‌ی زمانی','چه سال‌هایی','چه سال هایی','از چه سالی','تا چه سالی',
-           'چند سال','سال‌های پروژه','سال های پروژه')
+    hasAny(
+      'analysis period',
+      'time period',
+      'time range',
+      'study period',
+      'analysis years',
+      'years of the project',
+      'what years',
+      'چه سال‌هایی',
+      'چه سال هایی',
+      'از چه سالی',
+      'تا چه سالی',
+      'چند سال',
+      'سال‌های پروژه',
+      'سال های پروژه'
+    )
   ) {
-    return `📅 <b>Analysis Period</b><br>${PROJECT_KNOWLEDGE.period}`;
+    return `📅 <b>Analysis Period</b><br>
+    ${PROJECT_KNOWLEDGE.period}`;
   }
 
   if (
-    hasAny('resolution','Spatial Resolution','cell size','grid size','رزولوشن','اندازه سلول','اندازه‌ی سلول','grid چنده','سلول چند متر')
+    hasAny(
+      'resolution',
+      'spatial resolution',
+      'cell size',
+      'grid size',
+      'grid resolution',
+      'رزولوشن',
+      'اندازه سلول',
+      'اندازه‌ی سلول',
+      'grid چنده',
+      'سلول چند متر'
+    )
   ) {
-    return `📐 <b>Spatial Resolution</b><br>${PROJECT_KNOWLEDGE.resolution}`;
+    return `📐 <b>Spatial Resolution</b><br>
+    ${PROJECT_KNOWLEDGE.resolution}`;
   }
 
   if (
-    hasAny('study area','AOI','area','مساحت مAboutه','مساحت aoi','aoi چقدره','Study Area چقدره')
+    hasAny(
+      'study area',
+      'aoi',
+      'area',
+      'aoi area',
+      'how large is the study area',
+      'how big is the study area',
+      'مساحت پارک',
+      'مساحت aoi',
+      'aoi چقدره',
+      'study area چقدره'
+    )
   ) {
-    return `🗺️ <b>Study Area</b><br>${PROJECT_KNOWLEDGE.area}`;
+    return `🗺️ <b>Study Area</b><br>
+    ${PROJECT_KNOWLEDGE.area}`;
   }
 
   return null;
 }
-
 
 // ---- Topics the project genuinely has no data on — say so plainly
 //      instead of guessing. ----
